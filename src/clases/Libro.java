@@ -1,8 +1,12 @@
 package clases;
 
-public class Libro {
-	public void materia () {
-		System.out.println();
+public class Libro implements Runnable {
+	
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
