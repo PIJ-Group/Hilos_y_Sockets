@@ -8,20 +8,35 @@ public class ListaLibros {
 	private ArrayList<Libro>lista;
 	private String nombre;
 	
-	public  ListaLibros() {
-		super();
-		lista = new ArrayList<>();
-		cargarLibros();
-		
-	}
+	
 	public ListaLibros(String nombre) {
 		super();
+		this.nombre = nombre;
 		lista = new ArrayList<>();
 		cargarLibros();
-		this.nombre = nombre;
-		
 	}
+
+	public ListaLibros() {
+		super();
+}
 	
+	
+	public ArrayList<Libro> getLista() {
+		return lista;
+	}
+
+	public void setLista(ArrayList<Libro> lista) {
+		this.lista = lista;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
 	public Libro libroIsbn(String ISBN){
 		for(Libro libro : lista) {
 			if(libro.getISBN().equals(ISBN)) 
@@ -57,63 +72,65 @@ public class ListaLibros {
 		lista.add(new Libro("V1214", "El asesino", "Astro carlo",5.3));
 		
 	}
-}
-}
-	sc = new Scanner(System.in);
+	public void inicioApp(){	//intentar con try catch para que no se bloquee con opcion erronea
+		
 	int opcion;
+	sc = new Scanner(System.in);
 	do {
-
+		System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
+				+ "Escoja una de las siguientes opciones" );
         opcion = menu();
 
         switch (opcion) {
         case 1:
-        	libroIsbn("");
-            break;
+        	System.out.println("Introduzca el ISBN");
+			String isbn = sc.nextLine();
+			libroIsbn(isbn);
+			break;
         case 2:
-        	libroTitulo("");
+        	System.out.println("Introduzca el Título del libro");
+			String titulo = sc.nextLine();
+        	libroTitulo(titulo);
             break;
         case 3:
-        	libroAutor("");
+        	System.out.println("Introduzca el Autor a consultar");
+			String autor = sc.nextLine();
+        	libroAutor(autor);
             break;
         case 4:
-        	añadirLibros("","","",10);
+        	System.out.println("Introduzca los datos según se lo vamos pidiendo");
+        	System.out.println("ISBN: ");
+			isbn = sc.nextLine();
+			System.out.println("titulo: ");
+			titulo = sc.nextLine();
+			System.out.println("autor: ");
+			autor = sc.nextLine();
+			System.out.println("precio: ");
+			double precio = sc.nextDouble();
+        	añadirLibros(isbn,titulo,autor,precio);
             break;
         case 5:
-            System.out.println("Has salido del programa");
+            System.out.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
             break;
         default:
             System.out.println("Opción errónea");
+            break;
         }
 
 
-    }while (opcion != 5);
-
-
-	
-	/*int option;
-	do{
-		System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
-				+ "Escoja una de las siguientes opciones" );
-		option = menu();
-		
-		switch (option) {
-		case 1:
-			System.out.println("Introduzca el ISBN");
-				String isbn = sc.nextLine();
-				libroIsbn(isbn);
-			
-			break;
-
-		default: 
-			System.out.println("opcion erroneas");
-			break;
-		}
-		
-	}while(option > 0 && option < 6); */
-
-	
-
+    }while (opcion > 0 && opcion < 5);
 	
 }
+	
+	public static int menu() {
+		System.out.println("1. Consultar libro por ISBN");
+	    System.out.println("2. Consultar libro por título");
+	    System.out.println("3. Consultar libro por autor");
+	    System.out.println("4. Añadir libro");
+	    System.out.println("5. Salir de la aplicación");
+	    int option = sc.nextInt();
+	    return option;
+		
+	}
 }
 
