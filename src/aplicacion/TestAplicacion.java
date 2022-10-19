@@ -10,6 +10,7 @@ public class TestAplicacion {
 		L1.cargarLibros();
 		
 		L1.inicioApp();
+		System.out.println(L1.getLista());
 
 	}
 
