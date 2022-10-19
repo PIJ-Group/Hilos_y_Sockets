@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ListaLibros {
-	static Scanner sc;
+	static final Scanner sc = new Scanner(System.in);
 	private ArrayList<Libro>lista;
 	private String nombre;
 	
@@ -60,8 +60,9 @@ public class ListaLibros {
 		return lista2;	
 	}
 	
-	public void añadirLibros(String ISBN, String titulo, String autor, double precio) {
+	public ArrayList<Libro> añadirLibros(String ISBN, String titulo, String autor, double precio) {
 		lista.add(new Libro(ISBN, titulo, autor, precio));
+		return lista;
 		
 	}
 	public void cargarLibros() {
@@ -73,41 +74,53 @@ public class ListaLibros {
 		
 	}
 	public void inicioApp(){	//intentar con try catch para que no se bloquee con opcion erronea
-		
+	
+	
 	int opcion;
-	sc = new Scanner(System.in);
+	
 	do {
+		
 		System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
 				+ "Escoja una de las siguientes opciones" );
         opcion = menu();
 
         switch (opcion) {
-        case 1:
-        	System.out.println("Introduzca el ISBN");
+        case 1:System.out.println("Introduzca el ISBN");
 			String isbn = sc.nextLine();
-			libroIsbn(isbn);
+			isbn = sc.nextLine();
+			System.out.println(libroIsbn(isbn));
+			
 			break;
         case 2:
         	System.out.println("Introduzca el Título del libro");
 			String titulo = sc.nextLine();
-        	libroTitulo(titulo);
+			titulo = sc.nextLine();
+        	System.out.println(libroTitulo(titulo));
             break;
         case 3:
         	System.out.println("Introduzca el Autor a consultar");
 			String autor = sc.nextLine();
-        	libroAutor(autor);
+			 autor = sc.nextLine();
+        	System.out.println(libroAutor(autor));
             break;
         case 4:
         	System.out.println("Introduzca los datos según se lo vamos pidiendo");
         	System.out.println("ISBN: ");
 			isbn = sc.nextLine();
-			System.out.println("titulo: ");
+			isbn = sc.nextLine();
+			
+			System.out.println("Titulo: ");
 			titulo = sc.nextLine();
-			System.out.println("autor: ");
+			
+			System.out.println("Autor");
 			autor = sc.nextLine();
-			System.out.println("precio: ");
-			double precio = sc.nextDouble();
-        	añadirLibros(isbn,titulo,autor,precio);
+			
+			System.out.println("Precio");
+			Double precio = sc.nextDouble();
+			
+			System.out.println(añadirLibros(isbn, titulo, autor, precio));
+			
+        	
             break;
         case 5:
             System.out.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
