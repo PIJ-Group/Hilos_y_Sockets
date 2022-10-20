@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ListaLibros {
-	static final Scanner sc = new Scanner(System.in);
+	private Scanner sc = new Scanner (System.in);
 	private ArrayList<Libro>lista;
 	private String nombre;
 	
@@ -37,16 +37,16 @@ public class ListaLibros {
 		this.nombre = nombre;
 	}
 
-	public Libro libroIsbn(String ISBN){
+	public Libro libroIsbn(String isbn){
 		for(Libro libro : lista) {
-			if(libro.getISBN().equals(ISBN)) 
+			if(libro.getIsbn().equalsIgnoreCase(isbn)) 
 				return libro;
 		}
 		return null;	
 	}
 	public Libro libroTitulo(String titulo){
 		for(Libro libro : lista) {
-			if(libro.getTitulo().equals(titulo)) 
+			if(libro.getTitulo().equalsIgnoreCase(titulo)) 
 				return libro;
 		}
 		return null;	
@@ -54,14 +54,14 @@ public class ListaLibros {
 	public ArrayList<Libro> libroAutor(String autor){
 		ArrayList<Libro>lista2 = new ArrayList<Libro>();
 		for(Libro libro : lista) {
-			if(libro.getAutor().equals(autor)) 
+			if(libro.getAutor().equalsIgnoreCase(autor)) 
 				lista2.add(libro);
 		}
 		return lista2;	
 	}
 	
-	public ArrayList<Libro> añadirLibros(String ISBN, String titulo, String autor, double precio) {
-		lista.add(new Libro(ISBN, titulo, autor, precio));
+	public ArrayList<Libro> añadirLibros(String isbn, String titulo, String autor, double precio) {
+		lista.add(new Libro(isbn, titulo, autor, precio));
 		return lista;
 		
 	}
@@ -83,30 +83,28 @@ public class ListaLibros {
 		System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
 				+ "Escoja una de las siguientes opciones" );
         opcion = menu();
+        sc = new Scanner (System.in);
+      
 
         switch (opcion) {
         case 1:System.out.println("Introduzca el ISBN");
 			String isbn = sc.nextLine();
-			isbn = sc.nextLine();
 			System.out.println(libroIsbn(isbn));
 			
 			break;
         case 2:
         	System.out.println("Introduzca el Título del libro");
 			String titulo = sc.nextLine();
-			titulo = sc.nextLine();
         	System.out.println(libroTitulo(titulo));
             break;
         case 3:
         	System.out.println("Introduzca el Autor a consultar");
 			String autor = sc.nextLine();
-			 autor = sc.nextLine();
         	System.out.println(libroAutor(autor));
             break;
         case 4:
         	System.out.println("Introduzca los datos según se lo vamos pidiendo");
         	System.out.println("ISBN: ");
-			isbn = sc.nextLine();
 			isbn = sc.nextLine();
 			
 			System.out.println("Titulo: ");
@@ -135,7 +133,8 @@ public class ListaLibros {
 	
 }
 	
-	public static int menu() {
+	public int menu() {
+		sc = new Scanner (System.in); 
 		System.out.println("1. Consultar libro por ISBN");
 	    System.out.println("2. Consultar libro por título");
 	    System.out.println("3. Consultar libro por autor");
