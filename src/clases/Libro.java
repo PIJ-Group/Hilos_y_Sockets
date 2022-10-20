@@ -2,15 +2,15 @@ package clases;
 
 
 public class Libro {
-	private String ISBN;
+	private String isbn;
 	private String titulo;
 	private String autor;
 	private double precio;
 	
 	
-	public Libro(String ISBN, String titulo, String autor, double precio) {
+	public Libro(String isbn, String titulo, String autor, double precio) {
 		super();
-		this.ISBN = ISBN;
+		this.isbn = isbn;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.precio = precio;
@@ -18,11 +18,11 @@ public class Libro {
 	public Libro() {
 		super();
 	}
-	public String getISBN() {
-		return ISBN;
+	public String getIsbn() {
+		return isbn;
 	}
-	public void setISBN(String ISBN) {
-		this.ISBN = ISBN;
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
 	}
 	public String getTitulo() {
 		return titulo;
@@ -45,7 +45,7 @@ public class Libro {
 	
 	@Override
 	public String toString() {
-		return "Lib [ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", precio=" + precio + "]\n";
+		return "Lib [ISBN=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", precio=" + precio + "]\n";
 	}
 	
 	
