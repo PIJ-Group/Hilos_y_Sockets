@@ -6,8 +6,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import clases.Libro;
-
 public class Servidor {
 	
 	private static final int PUERTO = 2047;

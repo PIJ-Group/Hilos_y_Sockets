@@ -1,4 +1,4 @@
-package clases;
+package tarea;
 
 
 public class Libro {
