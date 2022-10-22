@@ -60,17 +60,17 @@ public class ListaLibros {
 		return lista2;	
 	}
 	
-	public ArrayList<Libro> añadirLibros(String isbn, String titulo, String autor, double precio) {
+	public ArrayList<Libro> añadirLibros(String isbn, String titulo, String autor, String precio) {
 		lista.add(new Libro(isbn, titulo, autor, precio));
 		return lista;
 		
 	}
 	public void cargarLibros() {
-		lista.add(new Libro("A1523", "El atraco", "Diego López", 25));
-		lista.add(new Libro("B5230", "La evasion", "Duran pérez", 10));
-		lista.add(new Libro("C1433", "Oceanos", "Maria López", 5));
-		lista.add(new Libro("D1111", "La biblia", "Astro carlo", 12.6));
-		lista.add(new Libro("V1214", "El asesino", "Astro carlo",5.3));
+		lista.add(new Libro("A1523", "El atraco", "Diego López", "25"));
+		lista.add(new Libro("B5230", "La evasion", "Duran pérez", "10"));
+		lista.add(new Libro("C1433", "Oceanos", "Maria López", "5"));
+		lista.add(new Libro("D1111", "La biblia", "Astro carlo", "12.6"));
+		lista.add(new Libro("V1214", "El asesino", "Astro carlo","5.3"));
 		
 	}
 	public void inicioApp(){	//intentar con try catch para que no se bloquee con opcion erronea
@@ -114,7 +114,7 @@ public class ListaLibros {
 			autor = sc.nextLine();
 			
 			System.out.println("Precio");
-			Double precio = sc.nextDouble();
+			String precio = sc.nextLine();
 			
 			System.out.println(añadirLibros(isbn, titulo, autor, precio));
 			
