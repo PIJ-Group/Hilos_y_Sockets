@@ -3,6 +3,8 @@ package clases;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import tarea.Libro;
+
 public class ListaLibros {
 	private Scanner sc = new Scanner (System.in);
 	private ArrayList<Libro>lista;
