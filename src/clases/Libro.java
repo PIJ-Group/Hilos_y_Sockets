@@ -5,10 +5,10 @@ public class Libro {
 	private String isbn;
 	private String titulo;
 	private String autor;
-	private double precio;
+	private String precio;
 	
 	
-	public Libro(String isbn, String titulo, String autor, double precio) {
+	public Libro(String isbn, String titulo, String autor, String precio) {
 		super();
 		this.isbn = isbn;
 		this.titulo = titulo;
@@ -36,10 +36,10 @@ public class Libro {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	public double getPrecio() {
+	public String getPrecio() {
 		return precio;
 	}
-	public void setPrecio(float precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
 	

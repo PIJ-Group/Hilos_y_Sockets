@@ -12,6 +12,7 @@ public class Servidor {
 	
 	private static final int PUERTO = 2047;
 	private static int peticion = 0;
+	static ArrayList<Libro>libros = new ArrayList<>();
 	
 	
 	
@@ -20,12 +21,19 @@ public class Servidor {
 		System.out.println("        SERVIDOR         ");
 		System.out.println("-----------------------------------");
 		
-		/*ArrayList<String>libros = new ArrayList<String>();
-		libros.add("A1523", "El atraco", "Diego López", "25");
-		libros.add("B5230", "La evasion", "Duran pérez", 10);
-		libros.add("C1433", "Oceanos", "Maria López", 5);
-		libros.add("D1111", "La biblia", "Astro carlo", 12.6);
-		libros.add("V1214", "El asesino", "Astro carlo",5.3); */
+		System.out.println("Precargando los libros de la biblioteca");
+		System.out.println("-----------------------------------");
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			
+			e1.printStackTrace();
+		}
+		libros.add(new Libro("A1523", "El atraco", "Diego López", "25"));
+		libros.add(new Libro("B5230", "La evasion", "Duran pérez", "20"));
+		libros.add(new Libro("C1433", "Oceanos", "Maria López", "3.5"));
+		libros.add(new Libro("D1111", "La biblia", "Astro carlo", "4.6"));
+		libros.add(new Libro("V1214", "El asesino", "Astro carlo","10")); 
 		
 		try(ServerSocket servidor = new ServerSocket()){
 			InetSocketAddress direccion = new InetSocketAddress(PUERTO);

@@ -18,7 +18,7 @@ public class Libtest {
 		System.out.println(biblioteca.libroAutor("Astro carlo"));
 		
 		//Añadir libro
-		biblioteca.añadirLibros("G1258", "El panico", "Berto Romero", 5.9);
+		
 		
 		System.out.println(biblioteca.libroIsbn("G1258"));
 		
