@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class Servidor {
+public class Biblioteca {
 	
 	private static final int PUERTO = 2047;
 	private static int peticion = 0;
@@ -16,11 +16,13 @@ public class Servidor {
 	
 	public static void main(String[] args) {
 		
-		System.out.println("        SERVIDOR         ");
-		System.out.println("-----------------------------------");
+		System.out.println("              BIBLIOTECA              ");
+		System.out.println("--------------------------------------");
+		
+		InetSocketAddress direccion = new InetSocketAddress(PUERTO);
 		
 		System.out.println("Precargando los libros de la biblioteca");
-		System.out.println("-----------------------------------");
+		
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
@@ -31,18 +33,20 @@ public class Servidor {
 		libros.add(new Libro("B5230", "La evasion", "Duran pérez", "20"));
 		libros.add(new Libro("C1433", "Oceanos", "Maria López", "3.5"));
 		libros.add(new Libro("D1111", "La biblia", "Astro carlo", "4.6"));
-		libros.add(new Libro("V1214", "El asesino", "Astro carlo","10")); 
+		libros.add(new Libro("V1214", "El asesino", "Astro carlo","10"));
+		
+		System.out.println("Biblioteca cargada");
 		
 		try(ServerSocket servidor = new ServerSocket()){
-			InetSocketAddress direccion = new InetSocketAddress(PUERTO);
+			
 			servidor.bind(direccion);
 			
 			System.out.println("Esperando petición por el puerto " + PUERTO);
 			
 			while(true) {
 				Socket socketCliente = servidor.accept();
-				System.out.println("Petición nº " + ++peticion + " recibida" );
-				//new Hilos(socketCliente);
+				System.out.println("\nPetición nº " + ++peticion + " recibida" );
+				new Hilos(socketCliente);
 			}
 			
 		}catch(IOException e) {
