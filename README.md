@@ -1,4 +1,6 @@
 # Hilos_y_Sockets
+![hilos_y_sockets](https://user-images.githubusercontent.com/98821740/197400764-3db1ef21-517f-4b16-af78-08250a54ad49.PNG)
+
 Práctica de PSP de 2 DAM de una biblioteca
 
 
