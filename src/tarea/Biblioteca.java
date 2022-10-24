@@ -29,6 +29,7 @@ public class Biblioteca {
 			
 			e1.printStackTrace();
 		}
+		
 		libros.add(new Libro("A1523", "El atraco", "Diego López", "25"));
 		libros.add(new Libro("B5230", "La evasion", "Duran pérez", "20"));
 		libros.add(new Libro("C1433", "Oceanos", "Maria López", "3.5"));
@@ -56,6 +57,8 @@ public class Biblioteca {
 			System.err.println("Error del servidor");
 			e.printStackTrace();
 		}
+		
+		
 		
 	}
 

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Hilos implements Runnable {
 	
@@ -35,17 +37,79 @@ public class Hilos implements Runnable {
 			boolean control = true;
 			
 			while(control) {
+				
 				text = entradaBr.readLine();
 				if(text.trim().equalsIgnoreCase("5")) {
+					
 					salida.println("5");
 					System.out.println("\nCerrado el hilo: " + hilo.getName());
 					control = false;
-				}else {
-					// funciones del menú...
+					
+				} else {
+					
+					int opcion = Integer.parseInt(entradaBr.readLine());
+					
+					do {
+						
+						Scanner sc = new Scanner(System.in);
+						
+						System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
+								+ "Escoja una de las siguientes opciones" );
+				        
+				        try {
+				        	
+					        switch (opcion) {
+					        
+					        case 1:
+					        	salida.println("Introduzca el ISBN");
+								String isbn = sc.nextLine();
+								salida.println(libroIsbn(isbn));								
+								break;
+					        case 2:
+					        	salida.println("Introduzca el Título del libro");
+								String titulo = sc.nextLine();
+					        	salida.println(libroTitulo(titulo));
+					            break;
+					        case 3:
+					        	salida.println("Introduzca el Autor a consultar");
+								String autor = sc.nextLine();
+					        	salida.println(libroAutor(autor));
+					            break;
+					        case 4:
+					        	salida.println("Introduzca los datos según se lo vamos pidiendo");
+					        	salida.println("ISBN: ");
+								isbn = sc.nextLine();
+								
+								salida.println("Titulo: ");
+								titulo = sc.nextLine();
+								
+								salida.println("Autor");
+								autor = sc.nextLine();
+								
+								salida.println("Precio");
+								String precio = sc.nextLine();
+								
+								salida.println(añadirLibros(isbn, titulo, autor, precio));													        	
+					            break;
+					        case 5:
+					            salida.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
+					            break;
+					        
+					        }
+					        
+					        sc.close();
+					    				            
+				        }catch(Exception e){
+				        	System.err.println("Opción errónea");
+				        	e.printStackTrace();
+				        }
+
+				    } while (opcion > 0 && opcion < 5);					
 				}
 			}
 			
 			socketCliente.close();
+		
 			
 		} catch (IOException e) {
 			System.err.println("Error entrada/salida");
@@ -53,14 +117,40 @@ public class Hilos implements Runnable {
 			
 		} catch (Exception e) {
 			System.err.println("Error del hilo");
-			e.printStackTrace();
-			
+			e.printStackTrace();			
 		}
+			
+	}
 		
+	public Libro libroIsbn(String isbn){
+		for(Libro libro : Biblioteca.libros) {
+			if(libro.getIsbn().equalsIgnoreCase(isbn)) 
+				return libro;
+		}
+		return null;	
 	}
 	
+	public Libro libroTitulo(String titulo){
+		for(Libro libro : Biblioteca.libros) {
+			if(libro.getTitulo().equalsIgnoreCase(titulo)) 
+				return libro;
+		}
+		return null;	
+	}
 	
+	public ArrayList<Libro> libroAutor(String autor){
+		ArrayList<Libro>lista2 = new ArrayList<Libro>();
+		for(Libro libro : Biblioteca.libros) {
+			if(libro.getAutor().equalsIgnoreCase(autor)) 
+				lista2.add(libro);
+		}
+		return lista2;	
+	}
 	
+	public ArrayList<Libro> añadirLibros(String isbn, String titulo, String autor, String precio) {
+		Biblioteca.libros.add(new Libro(isbn, titulo, autor, precio));
+		return Biblioteca.libros;		
+	}
 	
-
 }
+

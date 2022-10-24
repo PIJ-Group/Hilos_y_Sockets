@@ -41,20 +41,22 @@ public class Usuario {
 			do {
 				System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
 						+ "Escoja una de las siguientes opciones\n" );
+				
 		        opcion = menu();
 		        
 		        salida.println(opcion);
+		        
 		        System.out.println("Esperando respuesta del servidor");
 		        
 		        String datosObtenidos = entradaBr.readLine();
 		        
 		        if("5".equalsIgnoreCase(datosObtenidos)) {
 		        	control = false;
+		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio
 		        }else {
 		        	System.out.println(datosObtenidos);
 		        }
-		        
-				
+		        	
 			}while(control);
 			
 			socketServidor.close();
@@ -72,6 +74,7 @@ public class Usuario {
 
 		
 	}
+	
 	public static int menu() {
 		try (Scanner scm = new Scanner(System.in)) {
 			System.out.println("1. Consultar libro por ISBN");
