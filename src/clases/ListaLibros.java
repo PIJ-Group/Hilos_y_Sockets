@@ -53,6 +53,7 @@ public class ListaLibros {
 		}
 		return null;	
 	}
+	
 	public ArrayList<Libro> libroAutor(String autor){
 		ArrayList<Libro>lista2 = new ArrayList<Libro>();
 		for(Libro libro : lista) {
@@ -64,9 +65,9 @@ public class ListaLibros {
 	
 	public ArrayList<Libro> añadirLibros(String isbn, String titulo, String autor, String precio) {
 		lista.add(new Libro(isbn, titulo, autor, precio));
-		return lista;
-		
+		return lista;		
 	}
+	
 	public void cargarLibros() {
 		lista.add(new Libro("A1523", "El atraco", "Diego López", "25"));
 		lista.add(new Libro("B5230", "La evasion", "Duran pérez", "10"));
@@ -131,7 +132,7 @@ public class ListaLibros {
         }
 
 
-    }while (opcion > 0 && opcion < 5);
+    } while (opcion > 0 && opcion < 5);
 	
 }
 	
