@@ -47,19 +47,12 @@ public class Hilos implements Runnable {
 
 					control = false;
 					
-				} else {
-					
-
-					
-					
+				} else {		
 
 					//int opcion = Integer.parseInt(entradaBr.readLine());
 										
 
-					do {
-						
-						
-						
+					do {						
 						
 				        try {
 
@@ -100,6 +93,9 @@ public class Hilos implements Runnable {
 					        case "5":
 					            salida.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
 					            break;
+					        default: 
+					        	salida.println("Opción errónea");
+					        	break;
 					        
 					        }
 					        

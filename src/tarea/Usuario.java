@@ -39,10 +39,10 @@ public class Usuario {
 			//String text;
 			boolean control = true;
 			String opcion;
+			System.out.println("Bienvenido a la biblitoteca virtual\n");
 			
 			do {
-				System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
-						+ "Escoja una de las siguientes opciones\n" );
+				System.out.println("Escoja una de las siguientes opciones:\n" );
 				
 		        opcion = menu();
 		        
