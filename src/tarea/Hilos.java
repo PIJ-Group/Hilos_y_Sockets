@@ -42,40 +42,38 @@ public class Hilos implements Runnable {
 				if(text.trim().equalsIgnoreCase("5")) {
 					
 					salida.println("5");
-					System.out.println("\nCerrado el hilo: " + hilo.getName());
+					System.out.println("\nConexión cerrada por el " + hilo.getName());
 					control = false;
 					
 				} else {
 					
-					int opcion = Integer.parseInt(entradaBr.readLine());
+					
 					
 					do {
 						
-						Scanner sc = new Scanner(System.in);
 						
-						System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
-								+ "Escoja una de las siguientes opciones" );
-				        
+						
+						
 				        try {
-				        	
-					        switch (opcion) {
+				        	Scanner sc = new Scanner(System.in); 
+					        switch (text) {
 					        
-					        case 1:
-					        	salida.println("Introduzca el ISBN");
+					        case "1":
+					        	System.out.println("Introduzca el ISBN");
 								String isbn = sc.nextLine();
-								salida.println(libroIsbn(isbn));								
+								//salida.println(libroIsbn(isbn));								
 								break;
-					        case 2:
+					        case "2":
 					        	salida.println("Introduzca el Título del libro");
 								String titulo = sc.nextLine();
 					        	salida.println(libroTitulo(titulo));
 					            break;
-					        case 3:
+					        case "3":
 					        	salida.println("Introduzca el Autor a consultar");
 								String autor = sc.nextLine();
 					        	salida.println(libroAutor(autor));
 					            break;
-					        case 4:
+					        case "4":
 					        	salida.println("Introduzca los datos según se lo vamos pidiendo");
 					        	salida.println("ISBN: ");
 								isbn = sc.nextLine();
@@ -91,20 +89,20 @@ public class Hilos implements Runnable {
 								
 								salida.println(añadirLibros(isbn, titulo, autor, precio));													        	
 					            break;
-					        case 5:
+					        case "5":
 					            salida.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
 					            break;
 					        
 					        }
 					        
-					        sc.close();
+					        
 					    				            
 				        }catch(Exception e){
 				        	System.err.println("Opción errónea");
 				        	e.printStackTrace();
 				        }
-
-				    } while (opcion > 0 && opcion < 5);					
+	
+				    } while (text != "5");					
 				}
 			}
 			
