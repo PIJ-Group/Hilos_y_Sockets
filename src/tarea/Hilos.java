@@ -42,19 +42,27 @@ public class Hilos implements Runnable {
 				if(text.trim().equalsIgnoreCase("5")) {
 					
 					salida.println("5");
+
 					System.out.println("\nConexión cerrada por el " + hilo.getName());
+
 					control = false;
 					
 				} else {
 					
+
 					
 					
+
+					//int opcion = Integer.parseInt(entradaBr.readLine());
+										
+
 					do {
 						
 						
 						
 						
 				        try {
+
 				        	Scanner sc = new Scanner(System.in); 
 					        switch (text) {
 					        
@@ -76,7 +84,7 @@ public class Hilos implements Runnable {
 					        case "4":
 					        	salida.println("Introduzca los datos según se lo vamos pidiendo");
 					        	salida.println("ISBN: ");
-								isbn = sc.nextLine();
+								//isbn = sc.nextLine();
 								
 								salida.println("Titulo: ");
 								titulo = sc.nextLine();
@@ -87,7 +95,7 @@ public class Hilos implements Runnable {
 								salida.println("Precio");
 								String precio = sc.nextLine();
 								
-								salida.println(añadirLibros(isbn, titulo, autor, precio));													        	
+								//salida.println(añadirLibros(isbn, titulo, autor, precio));													        	
 					            break;
 					        case "5":
 					            salida.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
@@ -101,8 +109,10 @@ public class Hilos implements Runnable {
 				        	System.err.println("Opción errónea");
 				        	e.printStackTrace();
 				        }
+
 	
 				    } while (text != "5");					
+
 				}
 			}
 			
@@ -120,7 +130,10 @@ public class Hilos implements Runnable {
 			
 	}
 		
-	public Libro libroIsbn(String isbn){
+	public Libro libroIsbn(){
+		System.out.println("Introduzca el ISBN");
+		Scanner sc = new Scanner(System.in);
+		String isbn = sc.toString();
 		for(Libro libro : Biblioteca.libros) {
 			if(libro.getIsbn().equalsIgnoreCase(isbn)) 
 				return libro;
