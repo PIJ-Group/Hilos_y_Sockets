@@ -9,8 +9,6 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-
-
 public class Usuario {
 	
 	private static final int PUERTO = 2047;
@@ -39,31 +37,27 @@ public class Usuario {
 			//String text;
 			boolean control = true;
 			String opcion;
-			System.out.println("Bienvenido a la biblitoteca virtual\n");
 			
 			do {
-				System.out.println("Escoja una de las siguientes opciones:\n" );
+				System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
+						+ "Escoja una de las siguientes opciones\n" );
 				
 		        opcion = menu();
 		        
 		        salida.println(opcion);
 		        
-		        //System.out.println("Esperando respuesta del servidor");
+		        System.out.println("Esperando respuesta del servidor");
 		        
 		        String datosObtenidos = entradaBr.readLine();
 		        
 		        if("5".equalsIgnoreCase(datosObtenidos)) {
 		        	control = false;
-
 		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio
-		        	
-
 		        }else {
-		        	System.out.println(datosObtenidos);
-		        	System.out.println("Esperando respuesta del servidor");
+		        	System.out.println(datosObtenidos); /*Esto es lo que te decía Pablo, si tienes un Switch en un lado con 3 líneas, aquí tendras que recoger esas líneas (de ahí que lo llamar espejo)*/
+		        	opcion = sc.nextLine(); /*Revisar variable opción, creo que la estamos pisando y por eso sale el error de Scanner*/
+		        	System.out.println(datosObtenidos);		        	
 		        }
-		        
-		       
 		        	
 			}while(control);
 			
@@ -76,7 +70,7 @@ public class Usuario {
 			System.err.println("Error entrada/salida");
 			e.printStackTrace();
 		}catch (Exception e) {
-			System.err.println("Error de usuario");
+			System.err.println("Error de cliente");
 			e.printStackTrace();
 		}
 
@@ -84,7 +78,7 @@ public class Usuario {
 	}
 	
 	public static String menu() {
-		  Scanner scm = new Scanner(System.in);
+		try (Scanner scm = new Scanner(System.in)) {
 			System.out.println("1. Consultar libro por ISBN");
 			System.out.println("2. Consultar libro por título");
 			System.out.println("3. Consultar libro por autor");
@@ -92,7 +86,7 @@ public class Usuario {
 			System.out.println("5. Salir de la aplicación");
 			String option = scm.nextLine();
 			return option;
-		
+		}
 		
 	}
 	
