@@ -39,6 +39,7 @@ public class Hilos implements Runnable {
 			while(control) {
 				
 				text = entradaBr.readLine();
+				
 				if(text.trim().equalsIgnoreCase("5")) {
 					
 					salida.println("5");
@@ -60,9 +61,9 @@ public class Hilos implements Runnable {
 					        switch (text) {
 					        
 					        case "1":
-					        	System.out.println("Introduzca el ISBN");
+					        	salida.println("Introduzca el ISBN");
 								String isbn = sc.nextLine();
-								//salida.println(libroIsbn(isbn));								
+								salida.println(libroIsbn(isbn));								
 								break;
 					        case "2":
 					        	salida.println("Introduzca el Título del libro");
@@ -77,7 +78,7 @@ public class Hilos implements Runnable {
 					        case "4":
 					        	salida.println("Introduzca los datos según se lo vamos pidiendo");
 					        	salida.println("ISBN: ");
-								//isbn = sc.nextLine();
+								isbn = sc.nextLine();
 								
 								salida.println("Titulo: ");
 								titulo = sc.nextLine();
@@ -126,10 +127,7 @@ public class Hilos implements Runnable {
 			
 	}
 		
-	public Libro libroIsbn(){
-		System.out.println("Introduzca el ISBN");
-		Scanner sc = new Scanner(System.in);
-		String isbn = sc.toString();
+	public Libro libroIsbn(String isbn){
 		for(Libro libro : Biblioteca.libros) {
 			if(libro.getIsbn().equalsIgnoreCase(isbn)) 
 				return libro;
@@ -154,7 +152,7 @@ public class Hilos implements Runnable {
 		return lista2;	
 	}
 	
-	public ArrayList<Libro> añadirLibros(String isbn, String titulo, String autor, String precio) {
+	public synchronized ArrayList<Libro> añadirLibros(String isbn, String titulo, String autor, String precio) {
 		Biblioteca.libros.add(new Libro(isbn, titulo, autor, precio));
 		return Biblioteca.libros;		
 	}
