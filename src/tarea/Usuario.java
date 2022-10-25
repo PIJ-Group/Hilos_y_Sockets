@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+
+
 public class Usuario {
 	
 	private static final int PUERTO = 2047;
@@ -36,7 +38,7 @@ public class Usuario {
 			
 			//String text;
 			boolean control = true;
-			int opcion;
+			String opcion;
 			
 			do {
 				System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
@@ -52,11 +54,16 @@ public class Usuario {
 		        
 		        if("5".equalsIgnoreCase(datosObtenidos)) {
 		        	control = false;
-		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio //Isra: creo que así está bien
+
+		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio
+		        	
+
 		        }else {
 		        	System.out.println(datosObtenidos);
 		        	System.out.println("Esperando respuesta del servidor");
 		        }
+		        
+		       
 		        	
 			}while(control);
 			
@@ -76,16 +83,16 @@ public class Usuario {
 		
 	}
 	
-	public static int menu() {
-		try (Scanner scm = new Scanner(System.in)) {
+	public static String menu() {
+		  Scanner scm = new Scanner(System.in);
 			System.out.println("1. Consultar libro por ISBN");
 			System.out.println("2. Consultar libro por título");
 			System.out.println("3. Consultar libro por autor");
 			System.out.println("4. Añadir libro");
 			System.out.println("5. Salir de la aplicación");
-			int option = scm.nextInt();
+			String option = scm.nextLine();
 			return option;
-		}
+		
 		
 	}
 	

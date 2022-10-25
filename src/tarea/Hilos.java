@@ -42,30 +42,34 @@ public class Hilos implements Runnable {
 				if(text.trim().equalsIgnoreCase("5")) {
 					
 					salida.println("5");
-					System.out.println("\nConexión terminada por el " + hilo.getName());//Isra: pondría algo así como: terminada conexión por el Usuario_n
+
+					System.out.println("\nConexión cerrada por el " + hilo.getName());
+
 					control = false;
 					
 				} else {
 					
+
+					
+					
+
 					//int opcion = Integer.parseInt(entradaBr.readLine());
 										
+
 					do {
 						
-						Scanner sc = new Scanner(System.in);
 						
-						System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
-								+ "Escoja una de las siguientes opciones" );
-				        
+						
+						
 				        try {
-				        	
+
+				        	Scanner sc = new Scanner(System.in); 
 					        switch (text) {
 					        
 					        case "1":
-					        	libroIsbn();
-					        	
-					        	/*salida.println("Introduzca el ISBN");
+					        	System.out.println("Introduzca el ISBN");
 								String isbn = sc.nextLine();
-								salida.println(libroIsbn(isbn));*/								
+								//salida.println(libroIsbn(isbn));								
 								break;
 					        case "2":
 					        	salida.println("Introduzca el Título del libro");
@@ -99,15 +103,16 @@ public class Hilos implements Runnable {
 					        
 					        }
 					        
-					        sc.close();
+					        
 					    				            
 				        }catch(Exception e){
 				        	System.err.println("Opción errónea");
 				        	e.printStackTrace();
 				        }
 
-				    } //while (opcion > 0 && opcion < 5);
-					while(text != "5");
+	
+				    } while (text != "5");					
+
 				}
 			}
 			
