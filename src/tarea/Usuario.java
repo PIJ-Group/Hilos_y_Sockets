@@ -46,15 +46,16 @@ public class Usuario {
 		        
 		        salida.println(opcion);
 		        
-		        System.out.println("Esperando respuesta del servidor");
+		        //System.out.println("Esperando respuesta del servidor");
 		        
 		        String datosObtenidos = entradaBr.readLine();
 		        
 		        if("5".equalsIgnoreCase(datosObtenidos)) {
 		        	control = false;
-		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio
+		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio //Isra: creo que así está bien
 		        }else {
 		        	System.out.println(datosObtenidos);
+		        	System.out.println("Esperando respuesta del servidor");
 		        }
 		        	
 			}while(control);
@@ -68,7 +69,7 @@ public class Usuario {
 			System.err.println("Error entrada/salida");
 			e.printStackTrace();
 		}catch (Exception e) {
-			System.err.println("Error de cliente");
+			System.err.println("Error de usuario");
 			e.printStackTrace();
 		}
 
