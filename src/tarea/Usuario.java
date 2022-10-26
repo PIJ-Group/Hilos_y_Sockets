@@ -13,6 +13,7 @@ public class Usuario {
 	
 	private static final int PUERTO = 2047;
 	private static final String IP_SERVER = "localhost";
+	public static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
 		
@@ -24,7 +25,7 @@ public class Usuario {
 		BufferedReader entradaBr;
 		InetSocketAddress direccionServer = new InetSocketAddress(IP_SERVER,PUERTO);
 		
-		try(Scanner sc = new Scanner(System.in)){
+		try{
 			System.out.println("Esperando la respuesta del servidor");
 			Socket socketServidor = new Socket();
 			socketServidor.connect(direccionServer);
@@ -34,19 +35,20 @@ public class Usuario {
 			salida = new PrintStream(socketServidor.getOutputStream());
 			entradaBr = new BufferedReader(entrada);
 			
-			//String text;
+			String text;
 			boolean control = true;
 			String opcion;
+			System.out.println("---Bienvenido a la biblitoteca virtual---");
 			
 			do {
-				System.out.println("Bienvenido a la biblitoteca virtual" + "\n"
-						+ "Escoja una de las siguientes opciones\n" );
+				System.out.println("Escoja una de las siguientes opciones\n");  
 				
 		        opcion = menu();
 		        
 		        salida.println(opcion);
 		        
 		        System.out.println("Esperando respuesta del servidor");
+		        Thread.sleep(2000);
 		        
 		        String datosObtenidos = entradaBr.readLine();
 		        
@@ -55,8 +57,11 @@ public class Usuario {
 		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio
 		        }else {
 		        	System.out.println(datosObtenidos); /*Esto es lo que te decía Pablo, si tienes un Switch en un lado con 3 líneas, aquí tendras que recoger esas líneas (de ahí que lo llamar espejo)*/
-		        	opcion = sc.nextLine(); /*Revisar variable opción, creo que la estamos pisando y por eso sale el error de Scanner*/
-		        	System.out.println(datosObtenidos);		        	
+		        	text = sc.nextLine();
+		        	salida.println(text);/*Revisar variable opción, creo que la estamos pisando y por eso sale el error de Scanner*/
+		        	String datosObtenidos2 = entradaBr.readLine();
+		        	System.out.println(datosObtenidos2 + "\n");	
+		        	
 		        }
 		        	
 			}while(control);
@@ -78,16 +83,15 @@ public class Usuario {
 	}
 	
 	public static String menu() {
-		try (Scanner scm = new Scanner(System.in)) {
+		
 			System.out.println("1. Consultar libro por ISBN");
 			System.out.println("2. Consultar libro por título");
 			System.out.println("3. Consultar libro por autor");
 			System.out.println("4. Añadir libro");
 			System.out.println("5. Salir de la aplicación");
-			String option = scm.nextLine();
-			return option;
-		}
-		
+			String option = sc.nextLine();
+			System.out.println("Has elegido la opción: " +option);
+			return option;		
 	}
 	
 

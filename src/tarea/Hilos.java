@@ -13,6 +13,7 @@ public class Hilos implements Runnable {
 	private Thread hilo;
 	private static int numeroUsuario = 0;
 	private Socket socketCliente;
+	private String error="El libro noestá en la Base de Datos de la Biblioteca";
 	
 	public Hilos(Socket socketCliente) {
 		numeroUsuario++;
@@ -50,44 +51,55 @@ public class Hilos implements Runnable {
 					
 				} else {		
 
-					//int opcion = Integer.parseInt(entradaBr.readLine());
-										
-
-					do {						
+					do {
+						String info;
+						ArrayList<Libro> infoArray;
+						
 						
 				        try {
 
-				        	Scanner sc = new Scanner(System.in); 
-					        switch (text) {
+				        	switch (text) {
 					        
 					        case "1":
-					        	salida.println("Introduzca el ISBN");
-								String isbn = sc.nextLine();
-								salida.println(libroIsbn(isbn));								
+					        	System.out.println("El usuario ha solicitado la opción " +text);
+					        	salida.println("Introduzca el ISBN");					        	
+								String isbn = entradaBr.readLine();
+								System.out.println("El usuario solicita información a través del ISBN: " + isbn);
+								info = libroIsbn(isbn);	
+								System.out.println("la info solicitada por el usuario es: \n" +info);
+								salida.println(info);
 								break;
 					        case "2":
+					        	System.out.println("El usuario ha solicitado la opción " +text);
 					        	salida.println("Introduzca el Título del libro");
-								String titulo = sc.nextLine();
-					        	salida.println(libroTitulo(titulo));
+								String titulo = entradaBr.readLine();
+								System.out.println("El usuario solicita información a través del título: " + titulo);
+								info = libroTitulo(titulo);
+								System.out.println("la info solicitada por el usuario es: \n" +info);
+					        	salida.println(info);
 					            break;
 					        case "3":
+					        	System.out.println("El usuario ha solicitado la opción " +text);
 					        	salida.println("Introduzca el Autor a consultar");
-								String autor = sc.nextLine();
-					        	salida.println(libroAutor(autor));
+								String autor = entradaBr.readLine();
+								System.out.println("El usuario solicita información a través del autor: " + autor);
+								infoArray = libroAutor(autor);
+								System.out.println("la info solicitada por el usuario es: \n" +infoArray);
+					        	salida.println(infoArray);
 					            break;
 					        case "4":
 					        	salida.println("Introduzca los datos según se lo vamos pidiendo");
 					        	salida.println("ISBN: ");
-								isbn = sc.nextLine();
+								isbn = entradaBr.readLine();
 								
 								salida.println("Titulo: ");
-								titulo = sc.nextLine();
+								titulo = entradaBr.readLine();
 								
 								salida.println("Autor");
-								autor = sc.nextLine();
+								autor = entradaBr.readLine();;
 								
 								salida.println("Precio");
-								String precio = sc.nextLine();
+								String precio = entradaBr.readLine();
 								
 								//salida.println(añadirLibros(isbn, titulo, autor, precio));													        	
 					            break;
@@ -127,20 +139,20 @@ public class Hilos implements Runnable {
 			
 	}
 		
-	public Libro libroIsbn(String isbn){
+	public String libroIsbn(String isbn){
 		for(Libro libro : Biblioteca.libros) {
 			if(libro.getIsbn().equalsIgnoreCase(isbn)) 
-				return libro;
+				return libro.toString();
 		}
-		return null;	
+		return error;	
 	}
 	
-	public Libro libroTitulo(String titulo){
+	public String libroTitulo(String titulo){
 		for(Libro libro : Biblioteca.libros) {
 			if(libro.getTitulo().equalsIgnoreCase(titulo)) 
-				return libro;
+				return libro.toString();
 		}
-		return null;	
+		return error;	
 	}
 	
 	public ArrayList<Libro> libroAutor(String autor){
@@ -148,7 +160,8 @@ public class Hilos implements Runnable {
 		for(Libro libro : Biblioteca.libros) {
 			if(libro.getAutor().equalsIgnoreCase(autor)) 
 				lista2.add(libro);
-		}
+		}//else
+			//lista2.add("No hay ningún libro de ese autor");
 		return lista2;	
 	}
 	
