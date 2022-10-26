@@ -39,13 +39,13 @@ public class Usuario {
 			boolean control = true;
 			String opcion;
 			System.out.println("---Bienvenido a la biblitoteca virtual---");
-			
+			 
 			do {
 				System.out.println("Escoja una de las siguientes opciones\n");  
 				
-		        opcion = menu();
-		        
-		        salida.println(opcion);
+				opcion = menu();
+			    salida.println(opcion);
+		       
 		        
 		        System.out.println("Esperando respuesta del servidor");
 		        Thread.sleep(2000);
@@ -58,11 +58,15 @@ public class Usuario {
 		        }else {
 		        	System.out.println(datosObtenidos); /*Esto es lo que te decía Pablo, si tienes un Switch en un lado con 3 líneas, aquí tendras que recoger esas líneas (de ahí que lo llamar espejo)*/
 		        	text = sc.nextLine();
-		        	salida.println(text);/*Revisar variable opción, creo que la estamos pisando y por eso sale el error de Scanner*/
+		        	salida.println(text);
 		        	String datosObtenidos2 = entradaBr.readLine();
-		        	System.out.println(datosObtenidos2 + "\n");	
+		        	System.out.println(datosObtenidos2 + "\n");
 		        	
+		        	
+		        	
+		        		
 		        }
+		        
 		        	
 			}while(control);
 			
@@ -91,7 +95,7 @@ public class Usuario {
 			System.out.println("5. Salir de la aplicación");
 			String option = sc.nextLine();
 			System.out.println("Has elegido la opción: " +option);
-			return option;		
+			return option;
 	}
 	
 
