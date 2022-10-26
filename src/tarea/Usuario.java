@@ -46,11 +46,11 @@ public class Usuario {
 				opcion = menu();
 			    salida.println(opcion);
 		       
-		        
+			    
 		        System.out.println("Esperando respuesta del servidor");
 		        Thread.sleep(2000);
-		        
 		        String datosObtenidos = entradaBr.readLine();
+		       
 		        
 		        if("5".equalsIgnoreCase(datosObtenidos)) {
 		        	control = false;
@@ -61,6 +61,8 @@ public class Usuario {
 		        	salida.println(text);
 		        	String datosObtenidos2 = entradaBr.readLine();
 		        	System.out.println(datosObtenidos2 + "\n");
+		        	String datosObtenidos3 = entradaBr.readLine();
+		        	System.out.println(datosObtenidos3 + "\n");
 		        	
 		        	
 		        	

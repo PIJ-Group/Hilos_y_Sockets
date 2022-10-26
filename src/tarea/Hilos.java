@@ -51,7 +51,7 @@ public class Hilos implements Runnable {
 					
 				} else {		
 
-					do {
+					
 						String info;
 						ArrayList<Libro> infoArray;
 						
@@ -118,10 +118,10 @@ public class Hilos implements Runnable {
 				        }
 				        
 	
-				    } while (text == "1" ||  text == "2" || text == "3"|| text == "4");					
+				    }				
 
 				}
-			}
+			
 			
 			socketCliente.close();
 		
