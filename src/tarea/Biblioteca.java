@@ -24,7 +24,9 @@ public class Biblioteca {
 		System.out.println("Precargando los libros de la biblioteca");
 		
 		try {
+			
 			Thread.sleep(2000);
+			
 		} catch (InterruptedException e1) {
 			
 			e1.printStackTrace();
@@ -45,21 +47,25 @@ public class Biblioteca {
 			System.out.println("Esperando petición por el puerto " + PUERTO);
 			
 			while(true) {
+				
 				Socket socketCliente = servidor.accept();
-				System.out.println("\nPetición nº " + ++peticion + " recibida" );
+				System.out.println("\nPetición nº " + ++peticion + " recibida" + "\n" );
 				new Hilos(socketCliente);
+				
 			}
 			
 		}catch(IOException e) {
+			
 			System.err.println("Error entrada/salida");
 			e.printStackTrace();
+			
 		}catch(Exception e) {
+			
 			System.err.println("Error del servidor");
 			e.printStackTrace();
+			
 		}
-		
-		
-		
+			
 	}
 
 }
