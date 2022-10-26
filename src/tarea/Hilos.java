@@ -6,14 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Hilos implements Runnable {
 	
 	private Thread hilo;
 	private static int numeroUsuario = 0;
 	private Socket socketCliente;
-	private String error="El libro noestá en la Base de Datos de la Biblioteca";
+	private String error="El libro no está en la Base de Datos de la Biblioteca";
 	
 	public Hilos(Socket socketCliente) {
 		numeroUsuario++;
@@ -46,6 +45,7 @@ public class Hilos implements Runnable {
 					salida.println("5");
 
 					System.out.println("\nConexión cerrada por el " + hilo.getName());
+					salida.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
 
 					control = false;
 					
@@ -103,9 +103,7 @@ public class Hilos implements Runnable {
 								
 								//salida.println(añadirLibros(isbn, titulo, autor, precio));													        	
 					            break;
-					        case "5":
-					            salida.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
-					            break;
+					        
 					        default: 
 					        	salida.println("Opción errónea");
 					        	break;
@@ -118,9 +116,9 @@ public class Hilos implements Runnable {
 				        	System.err.println("Opción errónea");
 				        	e.printStackTrace();
 				        }
-
+				        
 	
-				    } while (text != "5");					
+				    } while (text == "1" ||  text == "2" || text == "3"|| text == "4");					
 
 				}
 			}
