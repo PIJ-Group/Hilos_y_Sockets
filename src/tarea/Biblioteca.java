@@ -32,9 +32,9 @@ public class Biblioteca {
 			e1.printStackTrace();
 		}
 		
-		libros.add(new Libro("A1523", "El atraco", "Diego López", "25"));
-		libros.add(new Libro("B5230", "La evasion", "Duran pérez", "20"));
-		libros.add(new Libro("C1433", "Oceanos", "Maria López", "3.5"));
+		libros.add(new Libro("A1523", "El atraco", "Diego Lopez", "25"));
+		libros.add(new Libro("B5230", "La evasion", "Duran perez", "20"));
+		libros.add(new Libro("C1433", "Oceanos", "Maria Lopez", "3.5"));
 		libros.add(new Libro("D1111", "La biblia", "Astro carlo", "4.6"));
 		libros.add(new Libro("V1214", "El asesino", "Astro carlo","10"));
 		

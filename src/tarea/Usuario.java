@@ -42,34 +42,26 @@ public class Usuario {
 			System.out.println("---Bienvenido a la biblitoteca virtual---");
 			 
 			do {
-				
-				System.out.println("Escoja una de las siguientes opciones\n");  
-				
+				System.out.println("Escoja una de las siguientes opciones\n");
 				opcion = menu();
-			    salida.println(opcion);
+				salida.println(opcion);
+				
 		       
 			    
 		        System.out.println("Esperando respuesta del servidor");
 		        Thread.sleep(2000);
 		        String datosObtenidos = entradaBr.readLine();
+		        
 		       
 		        
 		        if("5".equalsIgnoreCase(datosObtenidos)) {
-		        	
 		        	control = false;
 		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio
 		        	
-		        }else if("4".equalsIgnoreCase(datosObtenidos)) {
-		        	
-		        	System.out.println(datosObtenidos); /*Esto es lo que te decía Pablo, si tienes un Switch en un lado con 3 líneas, aquí tendras que recoger esas líneas (de ahí que lo llamar espejo)*/
-		        	text = sc.nextLine();
-		        	salida.println(text);
-		        	String datosObtenidos4 = entradaBr.readLine();
-		        	System.out.println(datosObtenidos4 + "\n");
-		        	String datosObtenidos5 = entradaBr.readLine();
-		        	System.out.println(datosObtenidos5 + "\n");
-		        	
-		        }else {
+		        
+		       
+		        
+		        } else {
 		        	
 		        	System.out.println(datosObtenidos); /*Esto es lo que te decía Pablo, si tienes un Switch en un lado con 3 líneas, aquí tendras que recoger esas líneas (de ahí que lo llamar espejo)*/
 		        	text = sc.nextLine();
@@ -77,9 +69,12 @@ public class Usuario {
 		        	String datosObtenidos2 = entradaBr.readLine();
 		        	System.out.println(datosObtenidos2 + "\n");
 		        	String datosObtenidos3 = entradaBr.readLine();
-		        	System.out.println(datosObtenidos3 + "\n");	
+		        	System.out.println(datosObtenidos3 + "\n");
 		        	
+		        	
+
 		        }
+		       
 		        		        	
 			}while(control);
 			
