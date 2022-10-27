@@ -44,34 +44,26 @@ public class Usuario {
 			do {
 				System.out.println("Escoja una de las siguientes opciones\n");
 				opcion = menu();
-				salida.println(opcion);
-				
-		       
+				salida.println(opcion);		       
 			    
 		        System.out.println("Esperando respuesta del servidor");
 		        Thread.sleep(2000);
-		        String datosObtenidos = entradaBr.readLine();
-		        
+		        String datosObtenidos = entradaBr.readLine();     
 		       
 		        
 		        if("5".equalsIgnoreCase(datosObtenidos)) {
 		        	control = false;
-		        	System.out.println("Conexión terminada"); //Esto hay que cambiarlo de sitio
-		        	
-		        
+		        	System.out.println("Conexión terminada");
 		       
-		        
 		        } else {
 		        	
-		        	System.out.println(datosObtenidos); /*Esto es lo que te decía Pablo, si tienes un Switch en un lado con 3 líneas, aquí tendras que recoger esas líneas (de ahí que lo llamar espejo)*/
+		        	System.out.println(datosObtenidos); 
 		        	text = sc.nextLine();
 		        	salida.println(text);
 		        	String datosObtenidos2 = entradaBr.readLine();
 		        	System.out.println(datosObtenidos2 + "\n");
 		        	String datosObtenidos3 = entradaBr.readLine();
-		        	System.out.println(datosObtenidos3 + "\n");
-		        	
-		        	
+		        	System.out.println(datosObtenidos3 + "\n");		        	
 
 		        }
 		       
@@ -107,7 +99,7 @@ public class Usuario {
 			System.out.println("4. Añadir libro");
 			System.out.println("5. Salir de la aplicación");
 			String option = sc.nextLine();
-			System.out.println("Has elegido la opción: " +option);
+			System.out.println("Has elegido la opción: " + option);
 			return option;
 			
 	}
