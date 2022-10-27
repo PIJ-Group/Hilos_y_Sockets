@@ -57,8 +57,9 @@ public class Libro {
 	
 	@Override
 	public String toString() {
+		String resultado = "Libro ISBN=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", precio=" + precio ;
 		
-		return "Lib [ISBN=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", precio=" + precio + "]\n";
+		return resultado;
 		
 	}
 	

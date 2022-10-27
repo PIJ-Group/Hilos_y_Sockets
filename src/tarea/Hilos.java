@@ -12,7 +12,8 @@ public class Hilos implements Runnable {
 	private Thread hilo;
 	private static int numeroUsuario = 0;
 	private Socket socketCliente;
-	private String error="El libro no está en la Base de Datos de la Biblioteca";
+	private String error = "El libro no está en la Base de Datos de la Biblioteca";
+	private String error2 = "No existen libros del autor solicitado";
 	
 	public Hilos(Socket socketCliente) {
 		
@@ -95,16 +96,16 @@ public class Hilos implements Runnable {
 					        	salida.println("Introduzca el Autor a consultar");
 								String autor = entradaBr.readLine();
 								System.out.println("El " +  hilo.getName() + "solicita información a través del autor: " + autor);
-								infoArray = libroAutor(autor);
-								System.out.println("la info solicitada por el " +  hilo.getName() + " es: \n" +infoArray);
-					        	salida.println(infoArray);
+								info = libroAutor(autor);
+								System.out.println("la info solicitada por el " +  hilo.getName() + " es: \n" +info);
+					        	salida.println(info);					        	
 					            break;
 					            
 					        case "4":
 					        	
 					        	System.out.println("El " +  hilo.getName() + " ha solicitado la opción " + text + "\n");
 					        	salida.println("Introduzca los datos según el formato especificado: ISBN-Título-Autor-Precio");
-					        	//salida.println("ISBN: ");
+					        	
 								libroCompleto = entradaBr.readLine();
 								libroCompuestoSeparado = libroCompleto.split("-");
 								String isbn1 = libroCompuestoSeparado[0];
@@ -114,7 +115,8 @@ public class Hilos implements Runnable {
 								añadirLibros(isbn1, titulo1, autor1, precio1);
 								salida.println("Libro añadido correctamente");
 								info1 = añadirLibros(isbn1, titulo1, autor1, precio1);
-								salida.println(info1);																			        	
+								salida.println(info1);
+								System.out.println("El libro añadido por el " +  hilo.getName() + " es: \n" +info1);
 					            break;
 					        
 					        default: 
@@ -156,32 +158,31 @@ public class Hilos implements Runnable {
 		
 		for(Libro libro : Biblioteca.libros) {
 			if(libro.getIsbn().equalsIgnoreCase(isbn)) 
-				return libro.toString();
+				return libro.toString() + "\n";
 			
 		}
 		
-		return error;	
+		return error + "\n";	
 	}
 	
 	public String libroTitulo(String titulo){
 		
 		for(Libro libro : Biblioteca.libros) {
 			if(libro.getTitulo().equalsIgnoreCase(titulo)) 
-				return libro.toString();
+				return libro.toString() + "\n";
 		}
 		
-		return error;	
+		return error + "\n";	
 	}
 	
-	public ArrayList<Libro> libroAutor(String autor){
+	public String libroAutor(String autor){
 		
 		ArrayList<Libro>lista2 = new ArrayList<Libro>();
 		for(Libro libro : Biblioteca.libros) {
 			if(libro.getAutor().equalsIgnoreCase(autor)) 
 				lista2.add(libro);
-		}//else
-			//lista2.add("No hay ningún libro de ese autor");
-		return lista2;	
+		}
+		return lista2.toString() + "\n";	
 	}
 	
 	public synchronized Libro añadirLibros(String isbn1, String titulo1, String autor1, String precio1) {
@@ -192,7 +193,9 @@ public class Hilos implements Runnable {
 		lastIdx = Biblioteca.libros.size() - 1;				
 		
 		return Biblioteca.libros.get(lastIdx);
-	}	
+	}
+	
+	
 	
 }
 	
