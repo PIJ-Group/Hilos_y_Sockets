@@ -32,11 +32,11 @@ public class Biblioteca {
 			e1.printStackTrace();
 		}
 		
-		libros.add(new Libro("A1523", "El atraco", "Diego Lopez", "25"));
-		libros.add(new Libro("B5230", "La evasion", "Duran perez", "20"));
-		libros.add(new Libro("C1433", "Oceanos", "Maria Lopez", "3.5"));
-		libros.add(new Libro("D1111", "La biblia", "Astro carlo", "4.6"));
-		libros.add(new Libro("V1214", "El asesino", "Astro carlo","10"));
+		libros.add(new Libro("9780765311771", "Elantris", "Brandon Sanderson", "26.50"));
+		libros.add(new Libro("9788468402772", "Los muertos vivientes", "Robert Kirkman", "20"));
+		libros.add(new Libro("9788417347291", "El imperio final", "Brandon Sanderson", "19.86"));
+		libros.add(new Libro("8483468018", "La niebla", "Stephen King", "4.85"));
+		libros.add(new Libro("9780007136599", "The Fellowship of The Ring", "J.R.R. Tolkien","253.04"));
 		
 		System.out.println("Biblioteca cargada");
 		
