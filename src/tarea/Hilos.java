@@ -81,7 +81,7 @@ public class Hilos implements Runnable {
 					        	System.out.println("El " +  hilo.getName() + " ha solicitado la opción " +text);
 					        	salida.println("Introduzca el Título del libro");
 								String titulo = entradaBr.readLine();
-								System.out.println("El " +  hilo.getName() + "solicita información a través del título: " + titulo);
+								System.out.println("El " +  hilo.getName() + " solicita información a través del título: " + titulo);
 								info = libroTitulo(titulo);
 								System.out.println("la info solicitada por el " +  hilo.getName() + " es: \n" +info);
 					        	salida.println(info);
@@ -92,7 +92,7 @@ public class Hilos implements Runnable {
 					        	System.out.println("El " +  hilo.getName() + " ha solicitado la opción " +text);
 					        	salida.println("Introduzca el Autor a consultar");
 								String autor = entradaBr.readLine();
-								System.out.println("El " +  hilo.getName() + "solicita información a través del autor: " + autor);
+								System.out.println("El " +  hilo.getName() + " solicita información a través del autor: " + autor);
 								info = libroAutor(autor);
 								System.out.println("la info solicitada por el " +  hilo.getName() + " es: \n" +info);
 					        	salida.println(info);					        	
