@@ -19,7 +19,7 @@ public class Hilos implements Runnable {
 	private String error = "El libro no está en la Base de Datos de la Biblioteca";
 	
 	/*Constructor del hilo, al cual pasamos el objeto Socket creado en la clase Biblioteca.
-	  Además, arracamos el hilo junto con su creación*/
+	  Además, arrancamos el hilo junto con su creación*/
 	public Hilos(Socket socketCliente) {
 		
 		numeroUsuario++;
@@ -41,7 +41,8 @@ public class Hilos implements Runnable {
 		
 		try {
 			
-			//Cremamos un nuevo stream de entrada y salida, además de un objeto (BufferedReader) para ayudar con la lectura de entrada.
+			/*Cremamos un nuevo stream de entrada y salida, además de un objeto (BufferedReader)
+			  para ayudar con la lectura de entrada.*/
 			entrada = new InputStreamReader(socketCliente.getInputStream());
 			salida = new PrintStream(socketCliente.getOutputStream());
 			entradaBr = new BufferedReader(entrada);
@@ -49,12 +50,14 @@ public class Hilos implements Runnable {
 			String text;
 			boolean control = true;
 			
-			//Bloque While al que cambiaremos la condición para que cierre el Hilo y se comunique con el Cliente para cerrarlo también.
+			/*Bloque While al que cambiaremos la condición para que cierre el Hilo 
+			  y se comunique con el Cliente para cerrarlo también.*/
 			while(control) {
 				
 				text = entradaBr.readLine();
 				
-				/*Bloque IF en el que si la clase recibe por el stream de entrada el número 5, mandará al Cliente el número 5 para cerrarlo.
+				/*Bloque IF en el que si la clase recibe por el stream de entrada el número 5, 
+				  mandará al Cliente el número 5 para cerrarlo.
 				  Además, cambiaremos la condición a FALSE para que salga del bucle While y cierre el Socket.*/
 				if(text.trim().equalsIgnoreCase("5")) {
 					
@@ -65,7 +68,8 @@ public class Hilos implements Runnable {
 
 					control = false;
 				
-				//Bloque ELSE en el que implementaremos la lógica de la aplicación, tanto las búsquedas como la inclusión del libro.
+				/*Bloque ELSE en el que implementaremos la lógica de la aplicación, 
+				  tanto las búsquedas como la inclusión del libro.*/
 				} else {
 					
 						///Variables utilizadas.
