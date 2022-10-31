@@ -7,14 +7,19 @@ import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
 
+/*Clase Hilos en la cual creamos un hilo por cada socket creado.
+  Para la utilización de esta clase, hemos decidido que implemente la interfaz Runnable*/
+
 public class Hilos implements Runnable {
 	
+	//Atributos de la clase.
 	private Thread hilo;
 	private static int numeroUsuario = 0;
 	private Socket socketCliente;
 	private String error = "El libro no está en la Base de Datos de la Biblioteca";
 	
-	
+	/*Constructor del hilo, al cual pasamos el objeto Socket creado en la clase Biblioteca.
+	  Además, arracamos el hilo junto con su creación*/
 	public Hilos(Socket socketCliente) {
 		
 		numeroUsuario++;
@@ -23,10 +28,12 @@ public class Hilos implements Runnable {
 		hilo.start();
 		
 	}
-
+	
+	//Sobreescritura del método run, donde implementamos la lógica de la clase.
 	@Override
 	public void run() {
 		
+		//Variables que utilizaremos para los streams del Socket.
 		System.out.println("Estableciendo conexión con: " +hilo.getName() + "\n");
 		InputStreamReader entrada;
 		PrintStream salida;
@@ -34,6 +41,7 @@ public class Hilos implements Runnable {
 		
 		try {
 			
+			//Cremamos un nuevo stream de entrada y salida, además de un objeto (BufferedReader) para ayudar con la lectura de entrada.
 			entrada = new InputStreamReader(socketCliente.getInputStream());
 			salida = new PrintStream(socketCliente.getOutputStream());
 			entradaBr = new BufferedReader(entrada);
@@ -41,10 +49,13 @@ public class Hilos implements Runnable {
 			String text;
 			boolean control = true;
 			
+			//Bloque While al que cambiaremos la condición para que cierre el Hilo y se comunique con el Cliente para cerrarlo también.
 			while(control) {
 				
 				text = entradaBr.readLine();
 				
+				/*Bloque IF en el que si la clase recibe por el stream de entrada el número 5, mandará al Cliente el número 5 para cerrarlo.
+				  Además, cambiaremos la condición a FALSE para que salga del bucle While y cierre el Socket.*/
 				if(text.trim().equalsIgnoreCase("5")) {
 					
 					salida.println("5");
@@ -53,18 +64,22 @@ public class Hilos implements Runnable {
 					salida.println("Has salido de la aplicación" + "\n" + "Que tenga un buen día");
 
 					control = false;
-					
+				
+				//Bloque ELSE en el que implementaremos la lógica de la aplicación, tanto las búsquedas como la inclusión del libro.
 				} else {
 					
+						///Variables utilizadas.
 						String info;
 						Libro info1;
 						String libroCompleto;
 						String[] libroCompuestoSeparado;						
 						
 				        try {
-
+				        	
+				        	//Creación de un SWITCH para el control de la lógica del menú del usuario.
 				        	switch (text) {
 					        
+				        	//Apartado 1 del menú: solicitud de un libro mediante su ISBN.
 					        case "1":
 					        	
 					        	System.out.println("El " +  hilo.getName() + " ha solicitado la opción " +text);
@@ -75,7 +90,8 @@ public class Hilos implements Runnable {
 								System.out.println("la info solicitada por el " +  hilo.getName() + " es: \n" +info);
 								salida.println(info);
 								break;
-								
+							
+							//Apartado 2 del menú: solicitud de un libro mediante su título.	
 					        case "2":
 					        	
 					        	System.out.println("El " +  hilo.getName() + " ha solicitado la opción " +text);
@@ -87,6 +103,7 @@ public class Hilos implements Runnable {
 					        	salida.println(info);
 					            break;
 					            
+					        //Apartado 3 del menú: solicitud de un libro mediante su autor.    
 					        case "3":
 					        	
 					        	System.out.println("El " +  hilo.getName() + " ha solicitado la opción " +text);
@@ -98,6 +115,7 @@ public class Hilos implements Runnable {
 					        	salida.println(info);					        	
 					            break;
 					            
+					        //Apartado 4 del menú: añadir libro a la biblioteca.    
 					        case "4":
 					        	
 					        	System.out.println("El " +  hilo.getName() + " ha solicitado la opción " + text + "\n");
@@ -114,6 +132,7 @@ public class Hilos implements Runnable {
 								System.out.println("El libro añadido por el " +  hilo.getName() + " es: \n" +info1);
 					            break;
 					        
+					        //Caso Default por si el cliente selecciona una opción superior al 5.
 					        default: 
 					        	
 					        	salida.println("Opción errónea");
@@ -134,7 +153,8 @@ public class Hilos implements Runnable {
 				}
 						
 			socketCliente.close();
-					
+		
+		//Bloques de excepciones contempladas.
 		} catch (IOException e) {
 			
 			System.err.println("Error entrada/salida");
@@ -149,7 +169,7 @@ public class Hilos implements Runnable {
 			
 	}
 		
-	
+	//Función de busqueda del libro mediante su isbn.
 	public String libroIsbn(String isbn){
 		
 		for(Libro libro : Biblioteca.libros) {
@@ -160,7 +180,7 @@ public class Hilos implements Runnable {
 		return error + "\n";	
 	}
 	
-	
+	//Función de búsqueda del libro mediante su título
 	public String libroTitulo(String titulo){
 		
 		for(Libro libro : Biblioteca.libros) {
@@ -172,7 +192,7 @@ public class Hilos implements Runnable {
 		return error + "\n";	
 	}
 	
-	
+	//Función de búsqueda del libro mediante su autor
 	public String libroAutor(String autor){
 		
 		ArrayList<Libro>lista2 = new ArrayList<Libro>();
@@ -186,7 +206,7 @@ public class Hilos implements Runnable {
 		
 	}
 	
-	
+	//Función con la que poder añadir libros a la biblioteca
 	public synchronized Libro añadirLibros(String isbn1, String titulo1, String autor1, String precio1) {
 
 		int lastIdx = 0;
