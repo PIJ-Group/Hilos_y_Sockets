@@ -6,7 +6,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-/*Servidor de la aplicación, llamado Biblioteca, que contendrá la base de datos de libros que componen la biblioteca y la creación del socket mediante la escucha del serversocket*/
+/*Servidor de la aplicación, llamado Biblioteca, 
+  que contendrá la base de datos de libros que componen la biblioteca y la creación del socket 
+  mediante la escucha del serversocket*/
 
 public class Biblioteca {
 	
@@ -46,7 +48,8 @@ public class Biblioteca {
 		
 		System.out.println("Biblioteca cargada");
 		
-		//Utilizamos un try-with-resources con ServerSocket, para poder cerrarlo automáticamente cuando terminemos de usar dicho bloque.
+		/*Utilizamos un try-with-resources con ServerSocket, 
+		  para poder cerrarlo automáticamente cuando terminemos de usar dicho bloque.*/
 		try(ServerSocket servidor = new ServerSocket()){
 			
 			//Ponemos a la escucha al ServerSocket en la dirección anteriormente creada.
@@ -54,7 +57,8 @@ public class Biblioteca {
 			
 			System.out.println("Esperando petición por el puerto " + PUERTO);
 			
-			//Bloque While en el que, mientras que la condición sea TRUE, creamos un Socket con un Hilo (al que le pasamos el Socket creado)
+			/*Bloque While en el que, mientras que la condición sea TRUE, 
+			  creamos un Socket con un Hilo (al que le pasamos el Socket creado)*/
 			while(true) {
 				
 				//Creación del Socket
